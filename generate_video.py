@@ -46,7 +46,7 @@ Return STRICT JSON only, no markdown, in this exact format:
 The "lines" should be the script split into 5-8 short caption chunks
 (max ~8 words each) in the order they're spoken.
 """
-    resp = client.models.generate_content(model="gemini-2.0-flash", contents=prompt)
+    resp = client.models.generate_content(model="gemini-2.5-flash", contents=prompt)
     text = resp.text.strip()
     if text.startswith("```"):
         text = text.split("```")[1]
