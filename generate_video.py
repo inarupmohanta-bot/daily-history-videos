@@ -180,24 +180,16 @@ def main():
     uid = uuid.uuid4().hex[:6]
     final_path = OUTPUT_DIR / f"video_{today}_{uid}.mp4"
 
-    subtitle_style = (
-        "FontName=Arial,FontSize=14,PrimaryColour=&H00FFFFFF,"
-        "OutlineColour=&H00000000,BorderStyle=3,Outline=2,"
-        "Alignment=2,MarginV=120"
-    )
-
     cmd = [
-        "ffmpeg", "-y",
-        "-i", str(silent_video),
-        "-i", str(audio_path),
-        "-vf", f"subtitles={srt_path}:force_style='{subtitle_style}'",
-        "-c:v", "libx264", "-c:a", "aac",
-        "-map", "0:v:0", "-map", "1:a:0",
-        "-shortest",
-        str(final_path)
-    ]
-    subprocess.run(cmd, check=True)
-
+       "ffmpeg", "-y",
+       "-i", str(silent_video),
+       "-i", str(audio_path),
+       "-c:v", "libx264", "-c:a", "aac",
+       "-map", "0:v:0", "-map", "1:a:0",
+       "-shortest",
+       str(final_path)
+   ]
+   subprocess.run(cmd, check=True)
     meta = {
         "title": title,
         "description": script_text + "\n\n#shorts #history #historyfacts #didyouknow",
