@@ -62,8 +62,12 @@ if __name__ == "__main__":
         sys.exit(0)
 
     meta_files = sorted(glob.glob("output/meta_*.json"))
-    if not meta_files:
-        print("No meta file found")
-        sys.exit(1)
-    meta = json.load(open(meta_files[-1]))
-    upload(meta["file"], meta["title"], meta["description"])
+   if not meta_files:
+       print("No meta file found")
+       sys.exit(1)
+   for mf in meta_files:
+       meta = json.load(open(mf))
+       try:
+           upload(meta["file"], meta["title"], meta["description"])
+       except Exception as e:
+           print(f"Upload failed for {mf}: {e}")
