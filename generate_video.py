@@ -30,16 +30,16 @@ def generate_script():
 animated "History Bites" videos aimed at maximizing YouTube Shorts and
 Instagram Reels engagement today.
 
-Pick ONE little-known but fascinating true historical event, figure, or
-fact (any era, any region of the world - mix it up across requests:
-ancient civilizations, world wars, Indian history, science history,
-exploration, etc.). Prefer stories with a surprising twist or "wow,
-I didn't know that" angle.
+Pick ONE little-known but fascinating true fact, story, or moment from
+   FIFA World Cup history (any tournament, any era, any country - goals,
+   records, players, controversies, funny incidents, records that still
+   stand). Prefer stories with a surprising twist or "wow, I didn't know
+   that" angle. Do not repeat topics from previous videos in this channel.
 
 Return STRICT JSON only, no markdown, in this exact format:
 {
   "title": "short catchy video title (max 60 chars)",
-  "topic": "2-3 word visual search term for background images matching the era/setting",
+  "topic": "2-3 word visual search term for background images, e.g. 'football stadium crowd' or 'soccer ball field'",
   "script": "the full narration script, 60-100 words, written for voiceover - start with a hook, tell the story, end with a punchy closing line",
   "lines": ["short caption line 1", "short caption line 2", "..."]
 }
@@ -208,4 +208,11 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+       import time
+       for i in range(5):
+           print(f"\n=== Generating video {i+1}/5 ===")
+           try:
+               main()
+           except Exception as e:
+               print(f"Video {i+1} failed: {e}")
+           time.sleep(5)
